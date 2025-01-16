@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jre AS downloader
 
 # Define the Nexus repository and artifact details
-ARG NEXUS_URL=http://77.37.125.190:8081/repository/maven-releases/
+ARG NEXUS_URL=http://192.168.50.4:8081/repository/maven-releases/
 ARG GROUP_ID=com.bezkoder
 ARG ARTIFACT_ID=spring-boot-jpa-h2
 ARG VERSION=0.0.1-RELEASE
