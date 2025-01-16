@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   backend:
+    image: cicd-backend:${BACKEND_VERSION:-latest}
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -15,8 +16,11 @@ services:
       SPRING_DATASOURCE_PASSWORD: devops_password
     networks:
       - app-network
+    labels:
+      - "app=myapp"
 
   frontend:
+    image: cicd-frontend:${FRONTEND_VERSION:-latest}
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -26,6 +30,8 @@ services:
       API_URL: "http://backend:8089/api"
     networks:
       - app-network
+    labels:
+      - "app=myapp"
 
   mysql:
     image: mysql:8.0
@@ -42,6 +48,8 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - app-network
+    labels:
+      - "app=myapp"
 
 volumes:
   mysql-data:
