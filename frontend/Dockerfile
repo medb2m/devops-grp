@@ -5,6 +5,7 @@ WORKDIR /app
 ENV API_URL=http://192.168.50.4:8087/api
 
 COPY package*.json ./
+RUN curl -I https://registry.npmjs.org
 RUN npm install
 
 COPY . .
