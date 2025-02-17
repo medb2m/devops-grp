@@ -2,40 +2,30 @@ version: '3.8'
 
 services:
   backend:
-    image: cicd-backend:${BACKEND_VERSION:-latest}
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: my_backend
+    labels:
+      - "app=mycloud"
+      - "service=backend"
     ports:
-      - "8087:8089" # Fixed extra quotation
+      - "8087:8089"
     depends_on:
       - mysql
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/devops" # Quoted value
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysql:3306/devops"
       SPRING_DATASOURCE_USERNAME: devops_user
       SPRING_DATASOURCE_PASSWORD: devops_password
     networks:
       - app-network
-    labels:
-      - "app=myapp"
-
-  frontend:
-    image: cicd-frontend:${FRONTEND_VERSION:-latest}
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "9091:4200"
-    environment:
-      API_URL: "http://backend:8089/api"
-    networks:
-      - app-network
-    labels:
-      - "app=myapp"
 
   mysql:
     image: mysql:8.0
-    container_name: mysql
+    container_name: my_mysql
+    labels:
+      - "app=mycloud"
+      - "service=mysql"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -48,12 +38,15 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - app-network
-    labels:
-      - "app=myapp"
+
+
 
 volumes:
   mysql-data:
+  sonarqube_data:
+  sonarqube_extensions:
+  nexus-data:
 
 networks:
   app-network:
-    name: mycloud_app_network
+    name: app_network
