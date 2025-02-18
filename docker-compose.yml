@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     image: springboot:1.0.0
-    container_name: my_backend
+    container_name: app
     ports:
       - "8087:8089"
     depends_on:
