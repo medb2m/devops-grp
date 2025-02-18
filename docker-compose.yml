@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: springboot:1.0.0
+    image: app:1.0.0
     container_name: app
     ports:
       - "8087:8089"
@@ -17,7 +17,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: my_mysql
+    container_name: mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
