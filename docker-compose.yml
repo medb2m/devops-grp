@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: springboot_hub:1.0.0
     container_name: my_backend
     ports:
       - "8087:8089"
