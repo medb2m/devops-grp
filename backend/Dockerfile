@@ -7,7 +7,7 @@ ARG GROUP_ID=com.bezkoder
 ARG ARTIFACT_ID=spring-boot-jpa-h2
 ARG VERSION=0.1.1-RELEASE
 
-# Convert groupId to the path format used in Nexus (replace dots with slashes)
+# Convert groupId to path format used in Nexus (replace dots with slashes)
 RUN mkdir -p /app
 RUN export ARTIFACT_PATH=$(echo $GROUP_ID | tr '.' '/') && \
     curl -o /app/application.jar "$NEXUS_URL$ARTIFACT_PATH/$ARTIFACT_ID/$VERSION/$ARTIFACT_ID-$VERSION.jar"
