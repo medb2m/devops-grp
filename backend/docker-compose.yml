@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: app:1.0.0
+    image: asma165/app:1.0.0
     container_name: app
     ports:
       - "8087:8089"
